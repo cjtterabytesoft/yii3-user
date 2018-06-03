@@ -107,7 +107,7 @@ class Account extends ActiveRecord
      */
     public static function find()
     {
-        return \Yii::createObject(AccountQuery::className(), [get_called_class()]);
+        return \Yii::createObject(AccountQuery::class, [get_called_class()]);
     }
 
     public static function create(BaseClientInterface $client)
