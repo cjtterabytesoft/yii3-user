@@ -1,0 +1,39 @@
+{
+    "name": "cjtterabytesoft/yii3-user",
+    "description": "Flexible user registration and authentication module for Yii2",
+    "keywords": ["yii3", "yii3-user", "user management", "cjtterabytesoft"],
+    "type": "yii2-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Wilmer Arambula",
+            "email": "cjtterabytellc@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=7.1.0",
+        "yiisoft/yii2": "2.1.x-dev",
+        "yiisoft/yii2-swiftmailer": "~2.0.0",
+        "yiisoft/yii2-authclient": "~2.0.0",
+        "yiisoft/yii2-bootstrap4": "~2.0.0"
+    },
+    "require-dev": {
+        "yiisoft/yii2-debug": "2.1.x-dev",
+        "yiisoft/yii2-gii": "2.1.x-dev",
+        "phpunit/phpunit": "~7.0.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "dektrium\\user\\": ""
+        }
+    },
+    "extra": {
+        "bootstrap": "dektrium\\user\\Bootstrap",
+        "branch-alias": {
+            "dev-master": "0.9.x-dev",
+            "dev-develop": "1.0.x-dev"
+        }
+    }
+}
