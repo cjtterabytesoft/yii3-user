@@ -166,7 +166,7 @@ class AdminController extends Controller
     {
         return [
             'verbs' => [
-                'class' => VerbFilter::className(),
+                '__class' => VerbFilter::class,
                 'actions' => [
                     'delete'          => ['post'],
                     'confirm'         => ['post'],
@@ -176,9 +176,9 @@ class AdminController extends Controller
                 ],
             ],
             'access' => [
-                'class' => AccessControl::className(),
+                '__class' => AccessControl::class,
                 'ruleConfig' => [
-                    'class' => AccessRule::className(),
+                    '__class' => AccessRule::class,
                 ],
                 'rules' => [
                     [
@@ -203,7 +203,7 @@ class AdminController extends Controller
     public function actionIndex()
     {
         Url::remember('', 'actions-redirect');
-        $searchModel  = \Yii::createObject(UserSearch::className());
+        $searchModel  = \Yii::createObject(UserSearch::class);
         $dataProvider = $searchModel->search(\Yii::$app->request->get());
 
         return $this->render('index', [
@@ -222,7 +222,7 @@ class AdminController extends Controller
     {
         /** @var User $user */
         $user = \Yii::createObject([
-            'class'    => User::className(),
+            '__class'    => User::class,
             'scenario' => 'create',
         ]);
         $event = $this->getUserEvent($user);
@@ -283,7 +283,7 @@ class AdminController extends Controller
         $profile = $user->profile;
 
         if ($profile == null) {
-            $profile = \Yii::createObject(Profile::className());
+            $profile = \Yii::createObject(Profile::class);
             $profile->link('user', $user);
         }
         $event = $this->getProfileEvent($profile);

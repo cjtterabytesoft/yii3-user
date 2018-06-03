@@ -45,7 +45,7 @@ class ProfileController extends Controller
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
+                '__class' => AccessControl::class,
                 'rules' => [
                     ['allow' => true, 'actions' => ['index'], 'roles' => ['@']],
                     ['allow' => true, 'actions' => ['show'], 'roles' => ['?', '@']],
