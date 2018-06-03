@@ -265,8 +265,8 @@ class Mailer extends Component
     protected function sendMessage($to, $subject, $view, $params = [])
     {
         $mailer = $this->mailerComponent === null ? Yii::$app->mailer : Yii::$app->get($this->mailerComponent);
-        $mailer->viewPath = $this->viewPath;
-        $mailer->getView()->theme = Yii::$app->view->theme;
+        $mailer->composer->viewPath = $this->viewPath;
+        $mailer->composer->getView()->theme = Yii::$app->view->theme;
 
         if ($this->sender === null) {
             $this->sender = isset(Yii::$app->params['adminEmail']) ?
