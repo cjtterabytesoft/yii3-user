@@ -109,7 +109,7 @@ class RecoveryForm extends Model
         if ($user instanceof User) {
             /** @var Token $token */
             $token = \Yii::createObject([
-                'class' => Token::className(),
+                '__class' => Token::class,
                 'user_id' => $user->id,
                 'type' => Token::TYPE_RECOVERY,
             ]);
