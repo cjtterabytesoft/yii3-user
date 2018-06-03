@@ -15,7 +15,7 @@
     "require": {
         "php": ">=7.1.0",
         "yiisoft/yii2": "2.1.x-dev",
-        "yiisoft/yii2-swiftmailer": "~2.0.0",
+        "yiisoft/yii2-swiftmailer": "2.2.x-dev",
         "yiisoft/yii2-authclient": "~2.0.0",
         "yiisoft/yii2-bootstrap4": "~2.0.0"
     },
