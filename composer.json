@@ -26,7 +26,7 @@
     },
     "autoload": {
         "psr-4": {
-            "dektrium\\user\\": ""
+            "dektrium\\user\\": "./src/user"
         }
     },
     "extra": {
