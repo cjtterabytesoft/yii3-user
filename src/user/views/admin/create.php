@@ -27,57 +27,58 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?= $this->render('_menu') ?>
 
-<div class="row">
-    <div class="col-md-3">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <?= Nav::widget([
-                    'options' => [
-                        'class' => 'nav-pills nav-stacked',
-                    ],
-                    'items' => [
-                        ['label' => Yii::t('user', 'Account details'), 'url' => ['/user/admin/create']],
-                        ['label' => Yii::t('user', 'Profile details'), 'options' => [
-                            'class' => 'disabled',
-                            'onclick' => 'return false;',
-                        ]],
-                        ['label' => Yii::t('user', 'Information'), 'options' => [
-                            'class' => 'disabled',
-                            'onclick' => 'return false;',
-                        ]],
-                    ],
-                ]) ?>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-9">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="alert alert-info">
-                    <?= Yii::t('user', 'Credentials will be sent to the user by email') ?>.
-                    <?= Yii::t('user', 'A password will be generated automatically if not provided') ?>.
-                </div>
-                <?php $form = ActiveForm::begin([
-                    'layout' => 'horizontal',
-                    'enableAjaxValidation' => true,
-                    'enableClientValidation' => false,
-                    'fieldConfig' => [
-                        'horizontalCssClasses' => [
-                            'wrapper' => 'col-sm-9',
-                        ],
-                    ],
-                ]); ?>
+<?= Html::beginTag('div', ['class' => 'row']) ?>
+	<?= Html::beginTag('div', ['class' => 'col-md-3']) ?>
+		<?= Html::beginTag('div', ['class' => 'panel panel-default']) ?>
+			<?= Html::beginTag('div', ['class' => 'panel-body']) ?>
+				<?= Nav::widget([
+					'options' => [
+						'class' => 'nav-pills nav-stacked',
+					],
+					'items' => [
+						['label' => Yii::t('user', 'Account details'), 'url' => ['/user/admin/create']],
+						['label' => Yii::t('user', 'Profile details'), 'options' => [
+							'class' => 'disabled',
+							'onclick' => 'return false;',
+						]],
+						['label' => Yii::t('user', 'Information'), 'options' => [
+							'class' => 'disabled',
+							'onclick' => 'return false;',
+						]],
+					],
+				]) ?>
+			<?= Html::endTag('div') ?>
+		<?= Html::endTag('div') ?>
+	<?= Html::endTag('div') ?>
+	<?= Html::beginTag('div', ['class' => 'col-md-9']) ?>
+		<?= Html::beginTag('div', ['class' => 'panel panel-default']) ?>
+			<?= Html::beginTag('div', ['class' => 'panel-body']) ?>
+				<?= Html::beginTag('div', ['class' => 'alert alert-info']) ?>
+					<?= Yii::t('user', 'Credentials will be sent to the user by email') ?>.
+					<?= Yii::t('user', 'A password will be generated automatically if not provided') ?>.
+				<?= Html::endTag('div') ?>
 
-                <?= $this->render('_user', ['form' => $form, 'user' => $user]) ?>
+				<?php $form = ActiveForm::begin([
+					'layout' => 'horizontal',
+					'enableAjaxValidation' => true,
+					'enableClientValidation' => false,
+					'fieldConfig' => [
+						'horizontalCssClasses' => [
+							'wrapper' => 'col-sm-9',
+						],
+					],
+				]); ?>
 
-                <div class="form-group">
-                    <div class="col-lg-offset-3 col-lg-9">
-                        <?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-block btn-success']) ?>
-                    </div>
-                </div>
+					<?= $this->render('_user', ['form' => $form, 'user' => $user]) ?>
 
-                <?php ActiveForm::end(); ?>
-            </div>
-        </div>
-    </div>
-</div>
+					<?= Html::beginTag('div', ['class' => 'form-group']) ?>
+						<?= Html::beginTag('div', ['class' => 'col-lg-2 offset-lg-2 col-lg-9']) ?>
+							<?= Html::submitButton(Yii::t('user', 'Save'), ['class' => 'btn btn-block btn-success']) ?>
+						<?= Html::endTag('div') ?>
+					<?= Html::endTag('div') ?>
+
+				<?php ActiveForm::end(); ?>
+			<?= Html::endTag('div') ?>
+		<?= Html::endTag('div') ?>
+	<?= Html::endTag('div') ?>
+<?= Html::endTag('div') ?>
