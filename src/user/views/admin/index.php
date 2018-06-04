@@ -38,9 +38,16 @@ $this->params['breadcrumbs'][] = $this->title;
             'attribute' => 'id',
             'headerOptions' => ['style' => 'width:90px;'], # 90px is sufficient for 5-digit user ids
         ],
-        'username',
-        'email:email',
         [
+            'label' => 'User Name',
+            'attribute' => 'username',
+        ],
+        [
+            'label' => 'Email',
+            'attribute' => 'email',
+        ],        
+        [
+            'label' => 'Register IP',
             'attribute' => 'registration_ip',
             'value' => function ($model) {
                 return $model->registration_ip == null
@@ -50,6 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'format' => 'html',
         ],
         [
+            'label' => 'Register Time',
             'attribute' => 'created_at',
             'value' => function ($model) {
                 if (extension_loaded('intl')) {
@@ -61,6 +69,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
 
         [
+          'label' => 'Last Login',      
           'attribute' => 'last_login_at',
           'value' => function ($model) {
             if (!$model->last_login_at || $model->last_login_at == 0) {
@@ -91,7 +100,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'visible' => Yii::$app->getModule('user')->enableConfirmation,
         ],
         [
-            'header' => Yii::t('user', 'Block status'),
+            'header' => Yii::t('user', 'Block <br/>Status'),
             'value' => function ($model) {
                 if ($model->isBlocked) {
                     return Html::a(Yii::t('user', 'Unblock'), ['block', 'id' => $model->id], [
@@ -110,17 +119,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'format' => 'raw',
         ],
         [
+            label => 'Actions',
             '__class' => yii\grid\ActionColumn::class,
             'template' => '{switch} {resend_password} {update} {delete}',
             'buttons' => [
-                'resend_password' => function ($url, $model, $key) {
-                    if (\Yii::$app->user->identity->isAdmin && !$model->isAdmin) {
-                        return '
-                    <a data-method="POST" data-confirm="' . Yii::t('user', 'Are you sure?') . '" href="' . Url::to(['resend-password', 'id' => $model->id]) . '">
-                    <span title="' . Yii::t('user', 'Generate and send new password to user') . '" class="fas fa-envelope">
-                    </span> </a>';
-                    }
-                },
                 'switch' => function ($url, $model) {
                     if(\Yii::$app->user->identity->isAdmin && $model->id != Yii::$app->user->id && Yii::$app->getModule('user')->enableImpersonateUser) {
                         return Html::a('<span class="fas fa-user"></span>', ['/user/admin/switch', 'id' => $model->id], [
@@ -130,7 +132,25 @@ $this->params['breadcrumbs'][] = $this->title;
                         ]);
                     }
                 }
-            ]
+            ],
+            'resend_password' => function ($url, $model, $key) {
+                if (\Yii::$app->user->identity->isAdmin && !$model->isAdmin) {
+                    return '
+                <a data-method="POST" data-confirm="' . Yii::t('user', 'Are you sure?') . '" href="' . Url::to(['resend-password', 'id' => $model->id]) . '">
+                <span title="' . Yii::t('user', 'Generate and send new password to user') . '" class="fas fa-envelope">
+                </span> </a>';
+                }
+            }, 
+            'update' => function ($url, $model) {
+                return Html::a('<span class="fas fa-edit"></span>', $url, [
+                    'title' => Yii::t('app', 'lead-update'),
+                ]);
+            },
+            'delete' => function ($url, $model) {
+                return Html::a('<span class="fas fa-trash"></span>', $url, [
+                    'title' => Yii::t('app', 'lead-delete'),
+                ]);
+            }                       
         ],
     ],
 ]); ?>
