@@ -35,19 +35,19 @@ $this->params['breadcrumbs'][] = $this->title;
     'layout'       => "{items}\n{pager}",
     'columns' => [
         [
-            'attribute' => 'id',
+            'attribute' => Yii::t('user', 'id'),
             'headerOptions' => ['style' => 'width:90px;'], # 90px is sufficient for 5-digit user ids
         ],
         [
-            'label' => 'User Name',
+            'label' => Yii::t('user', 'User Name'),
             'attribute' => 'username',
         ],
         [
-            'label' => 'Email',
+            'label' => Yii::t('user', 'Email'),
             'attribute' => 'email',
         ],        
         [
-            'label' => 'Register IP',
+            'label' => Yii::t('user', 'Register IP'),
             'attribute' => 'registration_ip',
             'value' => function ($model) {
                 return $model->registration_ip == null
@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'format' => 'html',
         ],
         [
-            'label' => 'Register Time',
+            'label' => Yii::t('user', 'Register Time'),
             'attribute' => 'created_at',
             'value' => function ($model) {
                 if (extension_loaded('intl')) {
@@ -69,7 +69,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
 
         [
-          'label' => 'Last Login',      
+          'label' => Yii::t('user', 'Last Login'),      
           'attribute' => 'last_login_at',
           'value' => function ($model) {
             if (!$model->last_login_at || $model->last_login_at == 0) {
@@ -119,7 +119,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'format' => 'raw',
         ],
         [
-            'header' => 'Actions',
+            'header' => Yii::t('user', 'Actions');
             '__class' => yii\grid\ActionColumn::class,
             'template' => '{switch} {resend_password} {update} {delete}',
             'buttons' => [
@@ -141,12 +141,12 @@ $this->params['breadcrumbs'][] = $this->title;
             	}, 
             	'update' => function ($url, $model) {
                 	return Html::a('<span class="fas fa-edit"></span>', $url, [
-                    	'title' => Yii::t('app', 'lead-update'),
+                    	'title' => Yii::t('user', 'Update');
                 	]);
             	},
             	'delete' => function ($url, $model) {
                 	return Html::a('<span class="fas fa-trash"></span>', $url, [
-                    	'title' => Yii::t('app', 'lead-delete'),
+                    	'title' => Yii::t('user', 'Delete');
                 	]);
             	},             
             ],                      
