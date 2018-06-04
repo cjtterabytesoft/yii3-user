@@ -119,7 +119,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'format' => 'raw',
         ],
         [
-            label => 'Actions',
+            'header' => 'Actions',
             '__class' => yii\grid\ActionColumn::class,
             'template' => '{switch} {resend_password} {update} {delete}',
             'buttons' => [
@@ -131,26 +131,25 @@ $this->params['breadcrumbs'][] = $this->title;
                             'data-method' => 'POST',
                         ]);
                     }
-                }
-            ],
-            'resend_password' => function ($url, $model, $key) {
-                if (\Yii::$app->user->identity->isAdmin && !$model->isAdmin) {
-                    return '
-                <a data-method="POST" data-confirm="' . Yii::t('user', 'Are you sure?') . '" href="' . Url::to(['resend-password', 'id' => $model->id]) . '">
-                <span title="' . Yii::t('user', 'Generate and send new password to user') . '" class="fas fa-envelope">
-                </span> </a>';
-                }
-            }, 
-            'update' => function ($url, $model) {
-                return Html::a('<span class="fas fa-edit"></span>', $url, [
-                    'title' => Yii::t('app', 'lead-update'),
-                ]);
-            },
-            'delete' => function ($url, $model) {
-                return Html::a('<span class="fas fa-trash"></span>', $url, [
-                    'title' => Yii::t('app', 'lead-delete'),
-                ]);
-            }                       
+                },
+            	'resend_password' => function ($url, $model, $key) {
+                	if (\Yii::$app->user->identity->isAdmin && !$model->isAdmin) {
+                    	return '<a data-method="POST" data-confirm="' . Yii::t('user', 'Are you sure?') . '" href="' . Url::to(['resend-password', 'id' => $model->id]) . '">
+                			<span title="' . Yii::t('user', 'Generate and send new password to user') . '" class="fas fa-envelope">
+                			</span></a>';
+                	}	
+            	}, 
+            	'update' => function ($url, $model) {
+                	return Html::a('<span class="fas fa-edit"></span>', $url, [
+                    	'title' => Yii::t('app', 'lead-update'),
+                	]);
+            	},
+            	'delete' => function ($url, $model) {
+                	return Html::a('<span class="fas fa-trash"></span>', $url, [
+                    	'title' => Yii::t('app', 'lead-delete'),
+                	]);
+            	},             
+            ],                      
         ],
     ],
 ]); ?>
