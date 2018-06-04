@@ -10,10 +10,9 @@
  */
 
 use yii\grid\GridView;
-use yii\helpers\Html;
+use yii\bootstrap4\Html;
 use yii\helpers\Url;
 use yii\web\View;
-use yii\widgets\Pjax;
 
 
 /**
@@ -29,8 +28,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <?= $this->render('/_alert', ['module' => Yii::$app->getModule('user')]) ?>
 
 <?= $this->render('/admin/_menu') ?>
-
-<?php Pjax::begin() ?>
 
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
@@ -113,20 +110,20 @@ $this->params['breadcrumbs'][] = $this->title;
             'format' => 'raw',
         ],
         [
-            'class' => 'yii\grid\ActionColumn',
+            '__class' => yii\grid\ActionColumn::class,
             'template' => '{switch} {resend_password} {update} {delete}',
             'buttons' => [
                 'resend_password' => function ($url, $model, $key) {
                     if (\Yii::$app->user->identity->isAdmin && !$model->isAdmin) {
                         return '
                     <a data-method="POST" data-confirm="' . Yii::t('user', 'Are you sure?') . '" href="' . Url::to(['resend-password', 'id' => $model->id]) . '">
-                    <span title="' . Yii::t('user', 'Generate and send new password to user') . '" class="glyphicon glyphicon-envelope">
+                    <span title="' . Yii::t('user', 'Generate and send new password to user') . '" class="fas fa-envelope">
                     </span> </a>';
                     }
                 },
                 'switch' => function ($url, $model) {
                     if(\Yii::$app->user->identity->isAdmin && $model->id != Yii::$app->user->id && Yii::$app->getModule('user')->enableImpersonateUser) {
-                        return Html::a('<span class="glyphicon glyphicon-user"></span>', ['/user/admin/switch', 'id' => $model->id], [
+                        return Html::a('<span class="fas fa-user"></span>', ['/user/admin/switch', 'id' => $model->id], [
                             'title' => Yii::t('user', 'Become this user'),
                             'data-confirm' => Yii::t('user', 'Are you sure you want to switch to this user for the rest of this Session?'),
                             'data-method' => 'POST',
@@ -138,4 +135,4 @@ $this->params['breadcrumbs'][] = $this->title;
     ],
 ]); ?>
 
-<?php Pjax::end() ?>
+
